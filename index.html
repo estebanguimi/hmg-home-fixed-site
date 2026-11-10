@@ -1,4 +1,4 @@
-<!DOCTYPE html><html class="dark" lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><title>Harris Media Group | Empowering Brands, Elevating Campaigns</title><meta name="description" content="Award-winning conservative political marketing agency. Advertising, web, TV, social, SMS/email, AI and video for campaigns, causes and advocacy."><meta name="theme-color" content="#0A0A0A"><link rel="icon" href="https://www.harrismediallc.com/wp-content/uploads/2024/12/cropped-logo-ligth-270x270.png"><!-- BRAND FONT: Adobe Fonts web project with Organetto Variable --><link rel="stylesheet" href="https://use.typekit.net/XXXXXXX.css"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&amp;family=Barlow+Semi+Condensed:wght@400;600;700;800;900&amp;display=swap" rel="stylesheet"><style class="" id="organetto-variable-rules">
+<!DOCTYPE html><html class="dark free-scroll" lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><title>Harris Media Group | Empowering Brands, Elevating Campaigns</title><meta name="description" content="Award-winning conservative political marketing agency. Advertising, web, TV, social, SMS/email, AI and video for campaigns, causes and advocacy."><meta name="theme-color" content="#0A0A0A"><link rel="icon" href="https://www.harrismediallc.com/wp-content/uploads/2024/12/cropped-logo-ligth-270x270.png"><!-- BRAND FONT: Adobe Fonts web project with Organetto Variable --><link rel="stylesheet" href="https://use.typekit.net/XXXXXXX.css"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&amp;family=Barlow+Semi+Condensed:wght@400;600;700;800;900&amp;display=swap" rel="stylesheet"><style class="" id="organetto-variable-rules">
 :root {
   --font-organetto: 'organetto-variable', 'Organetto Variable', 'Barlow Semi Condensed', sans-serif;
 }
@@ -300,7 +300,7 @@ html:not(.dark) #hero-typing-target {
 /* 2 · Slide mode tweaks (desktop) */
 html:not(.free-scroll) #slide-5 .aspect-\[4\/5\] { aspect-ratio: auto; height: min(46vh, 34rem); }
 
-/* 3 · Free scroll: phones, tablets and short laptop windows scroll normally instead of hijacked slides */
+/* 3 · Free scroll: use normal scrolling on every screen size */
 html.free-scroll, html.free-scroll body { height: auto !important; min-height: 100%; overflow-x: hidden !important; overflow-y: auto !important; }
 html.free-scroll body { overscroll-behavior: auto; }
 html.free-scroll #viewport-stage { height: auto !important; overflow: visible !important; }
@@ -477,8 +477,10 @@ img[src*="NH-SEANET"] { object-fit: contain !important; background: #D9D9D9; }
           </p><div class="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3"><a class="px-7 py-3.5 bg-primary-container hover:bg-on-surface text-on-primary hover:text-[#0A0A0A] font-organetto text-xs uppercase tracking-[0.2em] font-extrabold border border-primary-container text-center transition-all cursor-pointer" href="https://www.harrismediallc.com/contact/">CONTACT US →</a><div class="px-4 py-3 bg-[#111111] border border-outline-variant/40 flex items-center space-x-3"><span class="font-label-sm text-label-sm tracking-widest text-outline uppercase">CALL:</span><a class="font-label-sm text-label-sm text-on-surface hover:text-primary-container font-bold transition-colors" href="tel:+15129009439">512-900-9439</a></div></div></div><div class="pt-6 border-t border-outline-variant/30 flex flex-col md:flex-row md:items-center justify-between text-outline font-label-sm text-label-sm tracking-[0.16em] uppercase gap-2"><div class="flex flex-wrap items-center gap-3"><span class="text-on-surface font-bold">REGIONS:</span><span class="">NEW ENGLAND</span><span class="">•</span><span class="">FLORIDA</span><span class="">•</span><span class="">TEXAS</span><span class="">•</span><span class="">LATIN AMERICA</span></div><div><span class="">© 2026 HARRIS MEDIA GROUP</span></div></div></div></section></div></div></div><script>
   (function initHmgSlideEngine() {
     const root = document.documentElement;
-    const stage = document.getElementById("viewport-stage");
-    const track = document.getElementById("viewport-track");
+    const track = Array.from(document.querySelectorAll("#viewport-track"))
+      .find((candidate) => candidate.querySelector(":scope > section"));
+    const stage = track && track.parentElement;
+    if (!stage || !track) throw new Error("HMG: could not find the scrollable slide track.");
     const header = document.querySelector("header");
     const slides = Array.from(track.querySelectorAll(":scope > section"));
     const dots = document.querySelectorAll(".indicator-dot");
@@ -486,8 +488,8 @@ img[src*="NH-SEANET"] { object-fit: contain !important; background: #D9D9D9; }
     const jumpLinks = document.querySelectorAll("a[data-slide]");
     const menuBtn = document.getElementById("menu-toggle-btn");
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    // phones, tablets and short windows get normal scrolling instead of full-screen slides
-    const freeScrollMQ = window.matchMedia("(max-width: 1023px), (max-height: 659px)");
+    // Keep normal scrolling enabled on every screen size.
+    const freeScrollMQ = window.matchMedia("all");
 
     const NAV_ACTIVE = "font-organetto text[0.625rem] sm:text[0.6875rem] lg:text[0.75rem] tracking-[0.16em] sm:tracking-[0.2em] lg:tracking-[0.24em] font-bold uppercase transition-colors h-full flex items-center text-[#FE572E] border-b-2 border-[#FE572E] pb-1 px-1 nav-slide-link whitespace-nowrap";
     const NAV_IDLE = "font-organetto text[0.625rem] sm:text[0.6875rem] lg:text[0.75rem] tracking-[0.16em] sm:tracking-[0.2em] lg:tracking-[0.24em] font-semibold text-on-surface-variant hover:text-on-surface uppercase transition-colors h-full flex items-center border-b-2 border-transparent hover:border-primary-container pb-1 px-1 nav-slide-link whitespace-nowrap";
